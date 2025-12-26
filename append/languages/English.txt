@@ -1,0 +1,50 @@
+RESOURCE ID: mountain_cup_great_title
+TEXT: Mountain Cup: Great League Edition
+
+RESOURCE ID: little_cup_title
+TEXT: Little Cup
+
+RESOURCE ID: spring_cup_great_title
+TEXT: Spring Cup: Great League Edition
+
+RESOURCE ID: color_cup_great_title
+TEXT: Color Cup: Great League Edition
+
+RESOURCE ID: fantasy_cup_ultra_title
+TEXT: Fantasy Cup: Ultra League Edition
+
+RESOURCE ID: fantasy_cup_great_title
+TEXT: Fantasy Cup: Great League Edition
+
+RESOURCE ID: sunshine_cup_great_title
+TEXT: Sunshine Cup: Great League Edition
+
+RESOURCE ID: galar_great_cup_title
+TEXT: Galar Cup: Great League Edition
+
+RESOURCE ID: galar_little_cup_title
+TEXT: Galar Cup: Little Edition
+
+RESOURCE ID: scrolls_cup_great_title
+TEXT: Scroll Cup: Great League Edition 
+
+RESOURCE ID: move_name_0401
+TEXT: Psywave
+
+RESOURCE ID: move_name_0464
+TEXT: Rage Fist
+
+RESOURCE ID: move_name_0468
+TEXT: Torch Song
+
+RESOURCE ID: move_name_0471
+TEXT: Upper Hand
+
+RESOURCE ID: move_name_0484
+TEXT: Clanging Scales
+
+RESOURCE ID: great_league_championship_series
+TEXT: 2025 Championship Series Cup
+
+RESOURCE ID: move_name_0486
+TEXT: Dragon Energy

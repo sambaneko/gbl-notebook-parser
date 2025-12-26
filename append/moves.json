@@ -1,0 +1,17 @@
+{
+    "SHADOW_BALL": {
+        "energyDelta": -50
+    },
+    "SHADOW_SNEAK": {
+        "energyDelta": -50
+    },
+    "PARABOLIC_CHARGE": {
+        "energyDelta": -50
+    },
+    "SPACIAL_REND": {
+        "energyDelta": -55
+    },
+    "METEOR_MASH": {
+        "energyDelta": -45
+    }
+}
