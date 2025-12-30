@@ -30,8 +30,9 @@ $latestJson = json_decode(
 );
 
 $appends = [
-	'pokemon' => [],
-	'moves' => []
+	'pokemon'	=> [],
+	'moves'		=> [],
+	'leagues'	=> []
 ];
 
 foreach (array_keys($appends) as $appendName) {
@@ -44,9 +45,9 @@ foreach (array_keys($appends) as $appendName) {
 }
 
 $output = [
-	'leagues' => [],
-	'pokemon' => [],
-	'moves' => []
+	'leagues'	=> [],
+	'pokemon'	=> [],
+	'moves'		=> []
 ];
 
 $forms = [];
@@ -68,7 +69,9 @@ foreach ($latestJson as $jsonObj) {
 	}	
 
 	if (isset($jsonObj->data->combatLeague)) {
-		$move = parseLeagueData($jsonObj, $langLines);
+		$move = parseLeagueData(
+			$jsonObj, $langLines, $appends['leagues']
+		);
 		if ($move !== false) {
 			$output['leagues'][] = $move;
 		}

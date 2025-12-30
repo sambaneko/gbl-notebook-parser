@@ -1,8 +1,7 @@
 <?php
 
-function parseLeagueData($jsonObj, $langLines) {
-
-	$moveData = [
+function parseLeagueData($jsonObj, $langLines, $appends) {
+	$data = [
 		'templateId' => $jsonObj->templateId,
 		'value' => $jsonObj->templateId
 	];
@@ -14,41 +13,49 @@ function parseLeagueData($jsonObj, $langLines) {
 		}
 
 		if (isset($cond->withPokemonCpLimit)) {
-			$moveData['maxCp'] = $cond->withPokemonCpLimit->maxCp;
+			$data['maxCp'] = $cond->withPokemonCpLimit->maxCp;
 		}
 	
 		if (isset($cond->withPokemonType)) {
-			$moveData['allowedTypes'] = $cond->withPokemonType->pokemonType;
+			$data['allowedTypes'] = $cond->withPokemonType->pokemonType;
 		}	
 	
 		if (isset($cond->pokemonWhiteList)) {
-			$moveData['whiteList'] = _parseList($cond->pokemonWhiteList->pokemon);
+			$data['whiteList'] = _parseList($cond->pokemonWhiteList->pokemon);
 		}		
 	
 		if (isset($cond->pokemonBanList)) {
-			$moveData['banList'] = _parseList($cond->pokemonBanList->pokemon);
+			$data['banList'] = _parseList($cond->pokemonBanList->pokemon);
 		}
 	}
 
 	if (isset($jsonObj->data->combatLeague->bannedPokemon)) {
-		if (!isset($moveData['banList'])) {
-			$moveData['banList'] = [];
+		if (!isset($data['banList'])) {
+			$data['banList'] = [];
 		}
 
-		$moveData['banList'] = array_merge(
-			$moveData['banList'],
+		$data['banList'] = array_merge(
+			$data['banList'],
 			$jsonObj->data->combatLeague->bannedPokemon
 		);
 	}
 
-	$moveData['label'] = $jsonObj->data->combatLeague->title;
-	$moveData['label'] = isset($langLines[$moveData['label']])
-		? $langLines[$moveData['label']]
-		: $moveData['label'];
+	$data['label'] = $jsonObj->data->combatLeague->title;
+	$data['label'] = isset($langLines[$data['label']])
+		? $langLines[$data['label']]
+		: $data['label'];
 
-	$moveData['slug'] = str_replace([' ', ':'], ['-', ''], strtolower($moveData['label']));
+	$data['slug'] = str_replace(
+		[' ', ':'], ['-', ''], strtolower($data['label'])
+	);
 
-	return $moveData;
+	if (isset($appends[$jsonObj->templateId])) {
+		$data = array_merge_recursive(
+			$data, $appends[$jsonObj->templateId]
+		);
+	}	
+
+	return $data;
 }
 
 function _parseList($inList) {

@@ -32,6 +32,18 @@ Use this to add new moves, or update the stats on existing moves:
 
 GBL Notebook is currently only concerned with the energyDelta stat of moves; changes to these values can usually be sourced from posts in /r/TheSilphRoad at the start of a season.
 
+# leagues.json
+
+This is generally used to add "eligibility" descriptions for themed Cups, such as:
+
+```
+{
+	"COMBAT_LEAGUE_VS_SEEKER_GREAT_LOVE": {
+		"eligibility": "Only red- or pink-colored Pokémon are eligible."
+	}
+}
+```
+
 # languages/English.txt
 
 If after parsing, you notice moves that are labeled by their key values (ex. "move_name_0471"), then you will want to add them to this file.  The format expects a pair of lines, the first identifying the key (RESOURCE ID) and the second with its value (TEXT):
