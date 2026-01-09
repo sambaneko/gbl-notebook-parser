@@ -152,5 +152,10 @@
 		"fastMoves": [
 			"INCINERATE_FAST"
 		]
+	},
+	"V0733_POKEMON_TOUCANNON": {
+		"chargeMoves": [
+			"BEAK_BLAST"
+		]		
 	}
 }

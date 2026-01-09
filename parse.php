@@ -29,26 +29,26 @@ $latestJson = json_decode(
 	file_get_contents($latestJsonFile)
 );
 
-$appends = [
-	'pokemon'	=> [],
-	'moves'		=> [],
-	'leagues'	=> []
-];
-
-foreach (array_keys($appends) as $appendName) {
-	$appendFile = __DIR__ . "/append/{$appendName}.json";
-	if (file_exists($appendFile)) {
-		$appends[$appendName] = json_decode(
-			file_get_contents($appendFile), true
-		);
-	}
-}
-
 $output = [
 	'leagues'	=> [],
 	'pokemon'	=> [],
 	'moves'		=> []
 ];
+
+$updates = [];
+$inserts = [];
+
+function readAppendFile($path, $name) {
+	$file = __DIR__ . "/append/{$path}/{$name}.json";
+	return file_exists($file)
+		? json_decode(file_get_contents($file), true)
+		: [];
+}
+
+foreach (array_keys($output) as $dataName) {
+	$updates[$dataName] = readAppendFile('updates', $dataName);
+	$inserts[$dataName] = readAppendFile('inserts', $dataName);
+}
 
 $forms = [];
 
@@ -57,7 +57,7 @@ echo "Parsing files...\n";
 foreach ($latestJson as $jsonObj) {
 	if (isset($jsonObj->data->pokemonSettings)) {
 		$pokemon = parsePokemonData(
-			$jsonObj, $langLines, $appends['pokemon']
+			$jsonObj, $langLines, $updates['pokemon']
 		);
 		if ($pokemon !== false) {
 			$output['pokemon'][] = $pokemon;
@@ -70,7 +70,7 @@ foreach ($latestJson as $jsonObj) {
 
 	if (isset($jsonObj->data->combatLeague)) {
 		$move = parseLeagueData(
-			$jsonObj, $langLines, $appends['leagues']
+			$jsonObj, $langLines, $updates['leagues']
 		);
 		if ($move !== false) {
 			$output['leagues'][] = $move;
@@ -78,19 +78,26 @@ foreach ($latestJson as $jsonObj) {
 	}
 
 	if (isset($jsonObj->data->combatMove)) {
-		$move = parseMoveData(
-			$jsonObj, $langLines, $appends['moves']
+		list($index, $move) = parseMoveData(
+			$jsonObj, $langLines, $updates['moves']
 		);
+		// store moves by their index number to accomodate
+		// fixNumericMoves below
 		if (!is_null($move)) 
-			$output['moves'][$move['index']] = $move;
+			$output['moves'][$index] = $move;
 	}	
 }
 
 $output['pokemon'] = parsePokemonForms($forms, $output['pokemon'], []);
 $output['pokemon'] = fixNumericMoves($output['pokemon'], $output['moves']);
 
-// move indexing was temporary; remove from final
+// don't want move indexing in final output
 $output['moves'] = array_values($output['moves']);
+
+foreach ($inserts as $name => $data) {
+	if (!empty($data))
+		$output[$name] = array_merge($output[$name], $data);
+}
 
 foreach ($output as $name => $data) {
 	file_put_contents("{$outputPath}/{$name}.json", json_encode($data, JSON_PRETTY_PRINT));

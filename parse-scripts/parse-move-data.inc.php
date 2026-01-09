@@ -41,8 +41,7 @@ function parseMoveData($jsonObj, $langLines, $appends) {
 		'value' => $value,
 		'type' => $move->type,
 		'label' => $label,
-		'energyDelta' => $move->energyDelta,
-		'index' => (int)$zeroIndex
+		'energyDelta' => $move->energyDelta
 	];
 
 	// durationTurns in the game master seems to be a 0-index?
@@ -62,10 +61,11 @@ function parseMoveData($jsonObj, $langLines, $appends) {
 		);
 	}	
 
-	return $data;
+	return [(int)$zeroIndex, $data];
 }
 
-// game master may now mix string move names with numeric values...
+// game master may now mix a pokemon's string move names with numeric values
+// corresponding to the move's index; replace those
 function fixNumericMoves($pokemonData, $moveData) {
 	$fix = function ($moves) use ($moveData) {
 		foreach ($moves as &$move) {
