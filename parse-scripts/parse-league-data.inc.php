@@ -3,7 +3,8 @@
 function parseLeagueData($jsonObj, $langLines, $appends) {
 	$data = [
 		'templateId' => $jsonObj->templateId,
-		'value' => $jsonObj->templateId
+		'value' => $jsonObj->templateId,
+		'unique' => false
 	];
 	$conditions = $jsonObj->data->combatLeague->pokemonCondition;
 
@@ -26,6 +27,14 @@ function parseLeagueData($jsonObj, $langLines, $appends) {
 	
 		if (isset($cond->pokemonBanList)) {
 			$data['banList'] = _parseList($cond->pokemonBanList->pokemon);
+		}
+
+		if (
+			$cond->type == "WITH_UNIQUE_POKEMON" ||
+			// default GL, UL and ML are unique, but not marked as such
+			str_contains($jsonObj->templateId, 'DEFAULT')
+		) {
+			$data['unique'] = true;
 		}
 	}
 
