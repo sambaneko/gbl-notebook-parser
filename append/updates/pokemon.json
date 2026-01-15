@@ -95,7 +95,7 @@
 	},
 	"V0437_POKEMON_BRONZONG": {
 		"chargeMoves": [
-			"WEATHER_BALL"
+			"WEATHER_BALL_WATER"
 		]
 	},
 	"V0245_POKEMON_SUICUNE_NORMAL": {
@@ -115,7 +115,7 @@
 	},
 	"V0337_POKEMON_LUNATONE": {
 		"chargeMoves": [
-			"WEATHER_BALL"
+			"WEATHER_BALL_ICE"
 		]
 	},
 	"V0382_POKEMON_KYOGRE": {
@@ -145,7 +145,7 @@
 	},
 	"V0338_POKEMON_SOLROCK": {
 		"chargeMoves": [
-			"WEATHER_BALL"
+			"WEATHER_BALL_FIRE"
 		]
 	},
 	"V0711_POKEMON_GOURGEIST_AVERAGE": {
