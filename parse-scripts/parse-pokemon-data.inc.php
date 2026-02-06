@@ -21,7 +21,18 @@ function parsePokemonData($jsonObj, $langLines, $appends) {
 	}
 
 	$label = 'pokemon_name_' . $dexNumber;
-	$label = isset($langLines[$label]) ? $langLines[$label] : $label;
+	if (isset($langLines[$label])) {
+		$label = $langLines[$label];
+	} else {
+		// if the name is not currently provided in the language file,
+		// lets at least infer it
+		$pos = strpos($jsonObj->templateId, 'POKEMON_') + 8;
+		$_pos = strpos($jsonObj->templateId, '_', $pos);
+		$label = $_pos !== false 
+			? substr($jsonObj->templateId, $pos, $_pos - $pos)
+			: substr($jsonObj->templateId, $pos);
+		$label = ucwords(strtolower($label));
+	}
 
 	if (isset($stg->form)) {
 		// DKW: when the form is numeric, it's "normal"
