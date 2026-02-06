@@ -43,6 +43,11 @@ function github_api_get($url) {
 }
 
 function download_remote_file($url, $localPath) {
+	// keep the previous file for reference,
+	// in case something blows up
+	if (file_exists($localPath)) 
+		@rename($localPath, $localPath . '.old'); 
+
     $dir = dirname($localPath);
     if (!is_dir($dir)) {
         if (!@mkdir($dir, 0775, true) && !is_dir($dir)) {

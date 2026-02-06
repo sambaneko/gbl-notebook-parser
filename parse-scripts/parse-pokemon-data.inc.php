@@ -24,8 +24,14 @@ function parsePokemonData($jsonObj, $langLines, $appends) {
 	$label = isset($langLines[$label]) ? $langLines[$label] : $label;
 
 	if (isset($stg->form)) {
-		$form = $stg->form;
-		$shortForm = substr($form, strlen($stg->pokemonId) + 1);
+		// DKW: when the form is numeric, it's "normal"
+		if (is_numeric($stg->form)) {
+			$form = "{$stg->pokemonId}_NORMAL";
+			$shortForm = 'NORMAL';
+		} else {
+			$form = $stg->form;
+			$shortForm = substr($form, strlen($stg->pokemonId) + 1);
+		}
 		
 		if ($shortForm != 'NORMAL') {
 			$formLang = 'form_' . strtolower($form);

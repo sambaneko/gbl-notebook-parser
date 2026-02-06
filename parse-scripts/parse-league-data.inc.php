@@ -74,13 +74,21 @@ function _parseList($inList) {
 
 		if (isset($listItem->forms)) {
 			foreach ($listItem->forms as $form) {
-				$formSplit = explode('_', $form);
+				// DKW: there are now ints in this list, which refer
+				// to NORMAL forms
+				if (is_numeric($form)) {
+					$formName = 'NORMAL';
+				} else {
+					$formSplit = explode('_', $form);
+					$formName = $formSplit[1];
+				}
 
-				if ($formSplit[1] != 'UNSET') {
-					$outList[] = $listItemString . ", {$formSplit[1]}";
+				if ($formName != 'UNSET') {
+					$outList[] = "$listItemString, $formName";
 				}
 			}
 		} else {
+			// if it's an INT, refers to a pokemon
 			$outList[] = $listItemString;
 		}		
 	}
