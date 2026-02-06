@@ -69,6 +69,10 @@ function parsePokemonData($jsonObj, $langLines, $appends) {
 			$data, $appends[$jsonObj->templateId]
 		);
 	}
+
+	// clean up if our appends duplicated anything
+	$data['fastMoves'] = array_unique($data['fastMoves']);
+	$data['chargeMoves'] = array_unique($data['chargeMoves']);
 	
 	return $data;
 }
