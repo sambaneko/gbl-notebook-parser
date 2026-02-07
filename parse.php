@@ -65,7 +65,9 @@ foreach ($latestJson as $jsonObj) {
 	}
 
 	if (isset($jsonObj->data->formSettings)) {
-		$forms = collectForms($forms, $jsonObj->data->formSettings);
+		$forms = collectForms(
+			$forms, $jsonObj->data->formSettings, $jsonObj->templateId
+		);
 	}	
 
 	if (isset($jsonObj->data->combatLeague)) {

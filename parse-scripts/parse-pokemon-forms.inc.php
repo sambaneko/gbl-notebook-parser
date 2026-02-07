@@ -1,13 +1,26 @@
 <?php
-function collectForms($forms, $formSettings) {
+function collectForms($forms, $formSettings, $templateId) {
 	if (
 		isset($formSettings->pokemon) &&
 		isset($formSettings->forms)
 	) {
 		$monForms = [];
 
+		// DKW: some pokemon names in formSettings are INTs now;
+		// normalize them
+		if (is_numeric($formSettings->pokemon)) {
+			$formSettings->pokemon = substr(
+				$templateId, strrpos($templateId, '_') + 1
+			);
+		}
+
 		foreach ($formSettings->forms as $form) {
 			if (isset($form->form)) {
+				// DKW: some form names are now listed with INTs,
+				// but they are NORMAL forms
+				if (is_numeric($form->form)) 
+					$form->form = "{$formSettings->pokemon}_NORMAL";
+
 				$monForms[$form->form] = 
 					isset($form->isCostume) && 
 					$form->isCostume == true;

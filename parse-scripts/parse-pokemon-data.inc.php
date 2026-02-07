@@ -20,22 +20,25 @@ function parsePokemonData($jsonObj, $langLines, $appends) {
 		$types[] = $stg->type2;
 	}
 
+	// derive the pokemon name from the templateId;
+	// this will be relevant below...
+	$pos = strpos($jsonObj->templateId, 'POKEMON_') + 8;
+	$_pos = strpos($jsonObj->templateId, '_', $pos);
+	$determinedPokemonId = $_pos !== false 
+		? substr($jsonObj->templateId, $pos, $_pos - $pos)
+		: substr($jsonObj->templateId, $pos);
+
 	$label = 'pokemon_name_' . $dexNumber;
-	if (isset($langLines[$label])) {
-		$label = $langLines[$label];
-	} else {
-		// if the name is not currently provided in the language file,
-		// lets at least infer it
-		$pos = strpos($jsonObj->templateId, 'POKEMON_') + 8;
-		$_pos = strpos($jsonObj->templateId, '_', $pos);
-		$label = $_pos !== false 
-			? substr($jsonObj->templateId, $pos, $_pos - $pos)
-			: substr($jsonObj->templateId, $pos);
-		$label = ucwords(strtolower($label));
-	}
+	$label = isset($langLines[$label])
+		? $langLines[$label]
+		: ucwords(strtolower($determinedPokemonId));
+
+	// DKW: some pokemonId are now INTs; normalize them
+	if (is_numeric($stg->pokemonId))
+		$stg->pokemonId = $determinedPokemonId;
 
 	if (isset($stg->form)) {
-		// DKW: when the form is numeric, it's "normal"
+		// DKW: also some form names are INTs now; they're NORMAL
 		if (is_numeric($stg->form)) {
 			$form = "{$stg->pokemonId}_NORMAL";
 			$shortForm = 'NORMAL';
