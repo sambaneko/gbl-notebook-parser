@@ -1,5 +1,8 @@
 {
 	"COMBAT_LEAGUE_VS_SEEKER_GREAT_LOVE": {
-		"eligibility": "Only red- or pink-colored Pokémon are eligible."
+		"eligibility": "Only red- or pink-colored Pokémon are eligible.",
+		"whiteList": [
+			"LATIAS, NORMAL"
+		]
 	}
 }
