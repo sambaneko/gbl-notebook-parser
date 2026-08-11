@@ -10,4 +10,4 @@ Niantic doesn't provide a public API, so developing from their data files is, in
 
 # Regarding the Championship Series Cups
 
-In 2025, a new Championship Series Cup debuted, with some pretty unique eligibility rules.  In 2026, the Cup returned with a very different set of rules.  I'd like to retain each year's configuration separately, rather than overwriting the same Cup each year (which seems to be how Niantic is choosing to handle it), so I'm defining custom, yearly Championship Cups templateId values.
+In 2025, a new Championship Series Cup debuted, with some pretty unique eligibility rules.  In 2026, the Cup returned with a very different set of rules, but using the same ID value.  I'd like to retain each instance of this Cup's configuration separately, rather than overwriting the same Cup each run (which seems to be how Niantic is choosing to handle it), so I'm defining custom, seasonal Championship Cups templateId values.

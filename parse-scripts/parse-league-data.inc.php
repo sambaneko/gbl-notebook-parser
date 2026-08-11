@@ -10,7 +10,18 @@ function parseLeagueData($jsonObj, $langLines, $appends) {
 
 	foreach ($conditions as $cond) {
 		if (isset($cond->pokemonCaughtTimestamp)) {
-			return false; // no catch cups
+			// catch cups; only accept these two...
+			if (
+				!in_array(
+					$jsonObj->templateId,
+					[
+						"COMBAT_LEAGUE_VS_SEEKER_GREAT_CATCH",
+						"COMBAT_LEAGUE_VS_SEEKER_LITTLE_CATCH"
+					]
+				)
+			) {
+				return false;
+			}
 		}
 
 		if (isset($cond->withPokemonCpLimit)) {

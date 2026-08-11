@@ -1,17 +1,23 @@
 {
-	"SHADOW_BALL": {
+	"GUST_FAST": {
+		"energyDelta": 14
+	},
+	"ENERGY_BALL": {
+		"energyDelta": -45
+	},
+	"DRILL_RUN": {
+		"energyDelta": -40
+	},
+	"EARTH_POWER": {
 		"energyDelta": -50
 	},
-	"SHADOW_SNEAK": {
-		"energyDelta": -50
+	"HURRICANE": {
+		"energyDelta": -60
 	},
-	"PARABOLIC_CHARGE": {
-		"energyDelta": -50
+	"FLASH_CANNON": {
+		"energyDelta": -65
 	},
-	"SPACIAL_REND": {
-		"energyDelta": -55
-	},
-	"METEOR_MASH": {
+	"DRAGON_ASCENT": {
 		"energyDelta": -45
 	}
 }
