@@ -1,0 +1,8 @@
+[
+	{
+		"value": "DIVE",
+		"type": "POKEMON_TYPE_WATER",
+		"label": "Dive",
+		"energyDelta": -40
+	}
+]
