@@ -1,23 +1,53 @@
 {
-	"GUST_FAST": {
-		"energyDelta": 14
-	},
-	"ENERGY_BALL": {
+	"DARK_PULSE": {
 		"energyDelta": -45
 	},
-	"DRILL_RUN": {
-		"energyDelta": -40
-	},
-	"EARTH_POWER": {
+	"BUBBLE_BEAM": {
 		"energyDelta": -50
 	},
-	"HURRICANE": {
+	"MAGNET_BOMB": {
+		"energyDelta": -40
+	},
+	"MOONBLAST": {
+		"energyDelta": -50
+	},
+	"BULLDOZE": {
+		"energyDelta": -55
+	},
+	"BRINE": {
 		"energyDelta": -60
 	},
-	"FLASH_CANNON": {
+	"AIR_CUTTER": {
+		"energyDelta": -40
+	},
+	"BODY_SLAM": {
+		"energyDelta": -40
+	},
+	"BITE_FAST": {
+		"energyDelta": 4
+	},
+	"SCRATCH_FAST": {
+		"energyDelta": 4
+	},
+	"SAND_TOMB": {
+		"energyDelta": -45
+	},
+	"MIRROR_COAT": {
+		"energyDelta": -45
+	},
+	"TAKE_DOWN_FAST": {
+		"energyDelta": 9
+	},
+	"BLAZE_KICK": {
+		"energyDelta": -35
+	},
+	"SHADOW_FORCE": {
 		"energyDelta": -65
 	},
-	"DRAGON_ASCENT": {
-		"energyDelta": -45
+	"HIGH_HORSEPOWER": {
+		"energyDelta": -55
+	},
+	"RAGE_FIST": {
+		"energyDelta": -40
 	}
 }

@@ -1,11 +1,12 @@
 <?php
+require('config.inc.php');
 require('parse-scripts/parse-language.inc.php');
 require('parse-scripts/parse-pokemon-data.inc.php');
 require('parse-scripts/parse-pokemon-forms.inc.php');
 require('parse-scripts/parse-league-data.inc.php');
 require('parse-scripts/parse-move-data.inc.php');
 
-if (!in_array('parse-only', $argv)) {
+if ($conf['fetchFiles']) {
 	include('parse-scripts/fetch-files.php');
 }
 
