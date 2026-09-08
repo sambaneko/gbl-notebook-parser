@@ -185,10 +185,15 @@
 		"chargeMoves": [
 			"SWIFT"
 		]
-	},	
+	},
 	"V0143_POKEMON_SNORLAX_NORMAL": {
 		"fastMoves": [
 			"PSYWAVE_FAST"
+		]
+	},
+	"V0571_POKEMON_ZOROARK_NORMAL": {
+		"fastMoves": [
+			"SUCKER_PUNCH_FAST"
 		]
 	}
 }
